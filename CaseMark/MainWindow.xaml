@@ -1,0 +1,220 @@
+﻿<Window x:Name="MWindow" x:Class="CaseMark.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaseMark"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        MinHeight="740" 
+        MinWidth="1151" 
+        SizeToContent="WidthAndHeight"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown"
+        Topmost="True" MouseRightButtonUp="MWindow_MouseRightButtonUp"
+        >
+    <Window.Resources>
+        <local:DataConvert x:Key="dConvert"></local:DataConvert>
+        <Style x:Key="DtTextBlockStyle">
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="TextBlock.MinHeight" Value="45"></Setter>
+            <Setter Property="TextBlock.FontSize" Value="12"></Setter>
+        </Style>
+
+        
+            <Style x:Key="headerStyle">
+                <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+                <Setter Property="TextBlock.FontFamily" Value="Sylfean"></Setter>
+                <Setter Property="TextBlock.FontSize" Value="14"></Setter>
+                <Setter Property="TextBlock.TextWrapping" Value="Wrap"></Setter>
+            </Style>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0" 
+            Background="#FFCD4C1C"
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image  
+                   MaxWidth="70" 
+                   Source="gergi.png" 
+                   HorizontalAlignment="Left"
+                   Margin="10 20 10 5"
+                   Grid.Row="0"
+                   />
+                <TextBlock
+                Text="ქუთაისის საქალაქო სასამართლო"
+                FontWeight="Bold" 
+                    FontFamily="BPG Banner" 
+                    FontSize="14" 
+                    Foreground="White"
+                    Margin="10 0 0 5"
+                    Grid.Row="1"
+                />
+            </Grid>
+
+            <TextBlock Text=""
+                       VerticalAlignment="Bottom"
+                       Margin="815 0 0 5"
+                       Foreground="White"
+                       FontFamily="BPG Banner"
+                       
+                       FontSize="12"
+                       x:Name="dateT" 
+                       HorizontalAlignment="Right" 
+                       TextOptions.TextFormattingMode="Display"
+                       FontWeight="Bold" TextDecorations="Underline"
+                       />
+        </StackPanel>
+        <DataGrid 
+            Grid.Row="1" 
+            
+            x:Name="DisplaCases" 
+            FontFamily="Sylfaen" 
+            AutoGenerateColumns="False"
+           
+                 
+                  HorizontalContentAlignment="Stretch"
+                  Padding="5,10" HorizontalGridLinesBrush="#FFE0DBDB" 
+                  VerticalGridLinesBrush="#FFDADADA" 
+                  VerticalContentAlignment="Center"
+                  AlternationCount="1" 
+                  AlternatingRowBackground="#FFA0CFF5"
+                  HorizontalAlignment="Stretch"
+                  VerticalScrollBarVisibility="Auto"
+                  Height="Auto"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    MaxWidth="120"
+                    Binding="{Binding Path=CaseNumber}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock 
+                            FontFamily="BPG Banner" 
+                            FontWeight="Bold" 
+                            Text="საქმის ნომერი"
+                            TextWrapping="Wrap"
+                            Foreground="Green"
+                            Padding="0 5 10 0"
+                            />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextOptions.TextFormattingMode" Value="Display"></Setter>
+                            <Setter Property="MinHeight" Value="40"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Padding" Value="5"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                            <Setter Property="Foreground" Value="Red"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn 
+                    MaxWidth="150"
+                    Binding="{Binding Path=JUDGE.Name}" FontFamily="Sylfaen" FontWeight="Bold"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="მოსამართლე" 
+                                   FontWeight="Bold"
+                                   FontSize="12" FontFamily="BPG Banner" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Foreground="Green"
+                                    Padding="0 5 10 0"  
+                                   />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextOptions.TextFormattingMode" Value="Display"></Setter>
+                            <Setter Property="MinHeight" Value="40"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Padding" Value="5"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    MaxWidth="400"
+                    Binding="{Binding Path=CaseName}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="საქმის დასახელება" 
+                        FontWeight="Bold"
+                        FontSize="12" FontFamily="BPG Banner"
+                                    Foreground="Green"
+                            Padding="0 5 10 0"
+                        />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextOptions.TextFormattingMode" Value="Display"></Setter>
+                            <Setter Property="MinHeight" Value="40"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Padding" Value="5"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    MaxWidth="400"
+                    Binding="{Binding Path=CaseSides}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock 
+                            Text="მხარეები" 
+                            FontFamily="BPG Banner" 
+                            FontWeight="Bold"
+                             Foreground="Green"
+                            Padding="0 5 10 0"
+                                   />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextOptions.TextFormattingMode" Value="Display"></Setter>
+                            <Setter Property="MinHeight" Value="40"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Padding" Value="5"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    MaxWidth="200"
+                    Binding="{Binding Path=CaseDate,Converter={StaticResource dConvert}}"
+                    >
+                    <DataGridTextColumn.Header>
+                        <TextBlock 
+                            Text="განხილვის თარიღი" FontFamily="BPG Banner" FontWeight="Bold"
+                             Foreground="Green"
+                             Padding="0 5 10 0"
+                            />
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextOptions.TextFormattingMode" Value="Display"></Setter>
+                            <Setter Property="MinHeight" Value="40"></Setter>
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                            <Setter Property="Padding" Value="5"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                            <Setter Property="Foreground" Value="DarkRed"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
